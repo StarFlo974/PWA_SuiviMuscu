@@ -22,6 +22,9 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $roles = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $profile_image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class User
     public function setRoles(string $roles): static
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getProfileImage(): ?string
+    {
+        return $this->profile_image;
+    }
+
+    public function setProfileImage(string $profile_image): static
+    {
+        $this->profile_image = $profile_image;
 
         return $this;
     }
