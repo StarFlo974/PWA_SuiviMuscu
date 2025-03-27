@@ -1,0 +1,59 @@
+<div class="p-4 w-full max-w-md mx-auto">
+    <!-- Boutons centrés -->
+    <div class="flex justify-center gap-4 mb-6">
+      <a
+        routerLink="/createExercise"
+        [routerLinkActive]="['text-green-400']"
+        [ngClass]="{ 'text-white': !isActive('/createExercise'), 'bg-black px-4 py-2 rounded': true }"
+      >
+        Création
+      </a>
+    
+      <a
+        routerLink="/listExercise"
+        [routerLinkActive]="['text-green-400']"
+        [ngClass]="{ 'text-white': !isActive('/listExercise'), 'bg-black px-4 py-2 rounded': true }"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Liste
+      </a>
+    </div>
+    
+  
+    <!-- Formulaire -->
+    <form [formGroup]="exerciseForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Nom</label>
+        <input type="text" formControlName="label" class="w-full border rounded px-3 py-2" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Categorie</label>
+        <input type="text" formControlName="category_id" class="w-full border rounded px-3 py-2" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Poids</label>
+        <input type="number" formControlName="weight" class="w-full border rounded px-3 py-2" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Répétitions</label>
+        <input type="number" formControlName="reps" class="w-full border rounded px-3 py-2" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Temps Repos</label>
+        <input type="number" formControlName="rest" class="w-full border rounded px-3 py-2" />
+      </div>
+  
+      <button
+        type="submit"
+        class="flex items-center gap-2 bg-black text-white px-4 py-2 rounded mx-auto"
+      >
+        <span class="material-icons">note_add</span>
+        + Créer un exercice
+      </button>
+    </form>
+  </div>
+  
