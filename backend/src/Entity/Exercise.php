@@ -3,10 +3,23 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
+use App\Controller\ExerciseController;
 use App\Repository\ExerciseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExerciseRepository::class)]
+// #[ApiResource(
+//     operations: [
+//         new Post(
+//             uriTemplate: '/exercises/create',
+//             controller: 'App\\Controller\\ExerciseController::createExercise',
+//             name: 'custom_exercise_create',
+//             read: false,
+//             deserialize: false
+//         )
+//     ]
+// )]
 #[ApiResource]
 class Exercise
 {
@@ -17,7 +30,7 @@ class Exercise
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user_id = null;
+    private ?User $user_id = null;
 
     #[ORM\Column(length: 100)]
     private ?string $label = null;
@@ -45,12 +58,12 @@ class Exercise
         return $this->id;
     }
 
-    public function getUserId(): ?user
+    public function getUserId(): ?User
     {
         return $this->user_id;
     }
 
-    public function setUserId(?user $user_id): static
+    public function setUserId(?User $user_id): static
     {
         $this->user_id = $user_id;
 

@@ -18,7 +18,7 @@ class Goal
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user_id = null;
+    private ?User $user_id = null;
 
     #[ORM\ManyToOne]
     private ?exercise $exercise_id = null;
@@ -40,12 +40,12 @@ class Goal
         return $this->id;
     }
 
-    public function getUserId(): ?user
+    public function getUserId(): ?User
     {
         return $this->user_id;
     }
 
-    public function setUserId(?user $user_id): static
+    public function setUserId(?User $user_id): static
     {
         $this->user_id = $user_id;
 
