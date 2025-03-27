@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../services/api.service';
-import { Exercise } from '../services/models/exercise.model';
+import { ApiService } from '../../services/api.service';
+import { Exercise } from '../../services/models/exercise.model';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -18,7 +18,7 @@ export class ExerciseFormComponent implements OnInit {
   exercises: Exercise[] = [];
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router
   ) {
@@ -31,7 +31,7 @@ export class ExerciseFormComponent implements OnInit {
       rest: [null],
       duration: [null],
       user_id: ['/api/users/1']
-    });    
+    });
   }
 
   isActive(path: string): boolean {
@@ -46,21 +46,21 @@ export class ExerciseFormComponent implements OnInit {
     if (this.exerciseForm.valid) {
       console.log(this.exerciseForm.value);
       this.apiService.createExercise(this.exerciseForm.value).subscribe({
-          next: () => {
-            this.loadExercises();
-            this.exerciseForm.reset();
-          },
-          error: (err) => console.error('Erreur', err)
-        });
+        next: () => {
+          this.loadExercises();
+          this.exerciseForm.reset();
+        },
+        error: (err) => console.error('Erreur', err)
+      });
     }
   }
 
   loadExercises() {
     this.apiService.getExercises().subscribe(res => {
       this.exercises = res;
-    });    
+    });
   }
-  
+
 
   deleteExercise(id: number) {
     this.apiService.deleteExercise(id)

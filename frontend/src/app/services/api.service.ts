@@ -10,7 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 
 export class ApiService {
-  private apiUrl = '/api/exercises'; 
+  private apiUrl = '/api/exercises';
 
   private jsonHeaders = new HttpHeaders({
     'Accept': 'application/json'
@@ -20,7 +20,7 @@ export class ApiService {
     return of({ message: 'Pong!' });
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createExercise(exercise: Exercise): Observable<Exercise> {
     return this.http.post<Exercise>(this.apiUrl, exercise, { headers: this.jsonHeaders });

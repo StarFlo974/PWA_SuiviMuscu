@@ -1,8 +1,8 @@
 <div class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-800 z-50">
     <div class="flex justify-around items-center h-20 px-2">
         <!-- Statistiques -->
-        <button (click)="setActiveTab('statistics')" class="flex flex-col items-center justify-center w-1/5 h-full"
-            [ngClass]="{'text-green-400': activeTab === 'statistics', 'text-gray-400': activeTab !== 'statistics'}">
+        <button (click)="setActiveTab('statistic')" class="flex flex-col items-center justify-center w-1/5 h-full"
+            [ngClass]="{'text-green-400': activeTab === 'statistic', 'text-gray-400': activeTab !== 'statistic'}">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-chart-column-big-icon lucide-chart-column-big">
@@ -13,8 +13,8 @@
         </button>
 
         <!-- Ajouter -->
-        <button (click)="setActiveTab('add')" class="flex flex-col items-center justify-center w-1/5 h-full"
-            [ngClass]="{'text-green-400': activeTab === 'add', 'text-gray-400': activeTab !== 'add'}">
+        <button (click)="setActiveTab('createExercise')" class="flex flex-col items-center justify-center w-1/5 h-full"
+            [ngClass]="{'text-green-400': activeTab === 'createExercise', 'text-gray-400': activeTab !== 'createExercise'}">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-square-plus-icon lucide-square-plus">
@@ -25,8 +25,8 @@
         </button>
 
         <!-- Exercices -->
-        <button (click)="setActiveTab('createExercise')" class="flex flex-col items-center justify-center w-1/5 h-full"
-            [ngClass]="{'text-green-400': activeTab === 'createExercise', 'text-gray-400': activeTab !== 'createExercise'}">
+        <button (click)="setActiveTab('training')" class="flex flex-col items-center justify-center w-1/5 h-full"
+            [ngClass]="{'text-green-400': activeTab === 'training', 'text-gray-400': activeTab !== 'training'}">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-biceps-flexed-icon lucide-biceps-flexed">
@@ -38,8 +38,8 @@
         </button>
 
         <!-- Objectifs -->
-        <button (click)="setActiveTab('goals')" class="flex flex-col items-center justify-center w-1/5 h-full"
-            [ngClass]="{'text-green-400': activeTab === 'goals', 'text-gray-400': activeTab !== 'goals'}">
+        <button (click)="setActiveTab('quote')" class="flex flex-col items-center justify-center w-1/5 h-full"
+            [ngClass]="{'text-green-400': activeTab === 'quote', 'text-gray-400': activeTab !== 'quote'}">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-sparkles-icon lucide-sparkles">
@@ -53,8 +53,8 @@
         </button>
 
         <!-- Profil -->
-        <button (click)="setActiveTab('profile')" class="flex flex-col items-center justify-center w-1/5 h-full"
-            [ngClass]="{'text-green-400': activeTab === 'profile', 'text-gray-400': activeTab !== 'profile'}">
+        <button (click)="setActiveTab('account')" class="flex flex-col items-center justify-center w-1/5 h-full"
+            [ngClass]="{'text-green-400': activeTab === 'account', 'text-gray-400': activeTab !== 'account'}">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-user-round-cog-icon lucide-user-round-cog">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Ajouté ici
-import { ApiService } from '../services/api.service';
-import { Exercise } from '../services/models/exercise.model';
+import { ApiService } from '../../services/api.service';
+import { Exercise } from '../../services/models/exercise.model';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class ExerciseListComponent implements OnInit {
   exercises: Exercise[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router) { }
 
   isActive(path: string): boolean {
     return this.router.url === path;
