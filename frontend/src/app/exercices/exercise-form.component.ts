@@ -54,7 +54,7 @@ export class ExerciseFormComponent implements OnInit {
       weight: [null],
       reps: [null],
       sets: [null],
-      user_id: [1], // À remplacer par l'ID de l'utilisateur connecté
+      user_id: ['api/users/1'],
       category_id: [null]
     });
   }
@@ -65,6 +65,7 @@ export class ExerciseFormComponent implements OnInit {
 
   onSubmit() {
     if (this.exerciseForm.valid) {
+      console.log(this.exerciseForm.value);
       this.apiService.createExercise(this.exerciseForm.value)
         .subscribe({
           next: () => {

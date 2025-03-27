@@ -1,18 +1,14 @@
-# # config/packages/nelmio_cors.yaml
-# nelmio_cors:
-#     defaults:
-#         origin_regex: true
-#         allow_origin: ['*']  # À restreindre en production
-#         allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
-#         allow_headers: ['Content-Type', 'Authorization', 'X-Requested-With']
-#         max_age: 3600
-#         hosts: []
-#         origin_pattern: []
-
-#     # Configuration spécifique pour l'API
-#     paths:
-#         '^/api/':
-#             allow_origin: ['http://localhost:4200']
-#             allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-#             allow_headers: ['Content-Type', 'Authorization']
-#             max_age: 3600
+nelmio_cors:
+    defaults:
+        allow_origin: ['http://localhost:4200']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        allow_headers: ['Content-Type', 'Authorization']
+        expose_headers: ['Link']
+        max_age: 3600
+        allow_credentials: true
+    paths:
+        '^/api/':
+            allow_origin: ['*']
+            allow_headers: ['*']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+            max_age: 3600

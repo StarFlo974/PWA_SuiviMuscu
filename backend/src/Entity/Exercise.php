@@ -20,7 +20,10 @@ use Doctrine\ORM\Mapping as ORM;
 //         )
 //     ]
 // )]
-#[ApiResource]
+#[ApiResource(
+    denormalizationContext: ['groups' => ['exercise:write']],
+)
+]
 class Exercise
 {
     #[ORM\Id]
@@ -51,7 +54,7 @@ class Exercise
     private ?float $distance = null;
 
     #[ORM\ManyToOne]
-    private ?category $category_id = null;
+    private ?Category $category_id = null;
 
     public function getId(): ?int
     {
@@ -142,12 +145,12 @@ class Exercise
         return $this;
     }
 
-    public function getCategoryId(): ?category
+    public function getCategoryId(): ?Category
     {
         return $this->category_id;
     }
 
-    public function setCategoryId(?category $category_id): static
+    public function setCategoryId(?Category $category_id): static
     {
         $this->category_id = $category_id;
 

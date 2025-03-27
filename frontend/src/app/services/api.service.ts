@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Exercise } from './models/exercise.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,18 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   createExercise(exercise: Exercise): Observable<Exercise> {
-    return this.http.post<Exercise>(this.apiUrl, exercise);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+  
+    return this.http.post<Exercise>(
+      'https://localhost:8000/api/exercises',
+      JSON.stringify(exercise), // <- important : stringify
+      { headers }
+    );
   }
+  
+  
 
   getExercises(): Observable<Exercise[]> {
     return this.http.get<Exercise[]>(this.apiUrl);
