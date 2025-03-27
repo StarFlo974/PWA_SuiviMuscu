@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [RouterModule],
-  styleUrls: ['./app.component.css']
+  styleUrls: ['../styles.sass']
 })
 export class AppComponent implements OnInit {
   response: string = '';

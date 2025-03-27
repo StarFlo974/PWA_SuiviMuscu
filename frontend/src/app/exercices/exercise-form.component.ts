@@ -9,26 +9,7 @@ import { Exercise } from '../services/models/exercise.model';
   selector: 'app-exercise-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  template: `
-    <form [formGroup]="exerciseForm" (ngSubmit)="onSubmit()">
-      <input 
-        formControlName="label" 
-        placeholder="Nom de l'exercice"
-      >
-      <input 
-        type="number" 
-        formControlName="weight" 
-        placeholder="Poids"
-      >
-      <input 
-        type="number" 
-        formControlName="reps" 
-        placeholder="Répétitions"
-      >
-      <button type="submit">Créer Exercice</button>
-    </form>
-
-  `
+  templateUrl: './exercise-form.component.html',
 })
 export class ExerciseFormComponent implements OnInit {
   exerciseForm: FormGroup;
@@ -40,11 +21,13 @@ export class ExerciseFormComponent implements OnInit {
   ) {
     this.exerciseForm = this.fb.group({
       label: ['', Validators.required],
+      category_id: [''],
       weight: [null],
       reps: [null],
       sets: [null],
-      user_id: ['/api/users/1'],   // ✅ ce doit être une string URI
-      category_id: [null]          // ou une string de type "/api/categories/X"
+      rest: [null],
+      duration: [null],
+      user_id: ['/api/users/1']
     });    
   }
 
@@ -55,8 +38,7 @@ export class ExerciseFormComponent implements OnInit {
   onSubmit() {
     if (this.exerciseForm.valid) {
       console.log(this.exerciseForm.value);
-      this.apiService.createExercise(this.exerciseForm.value)
-        .subscribe({
+      this.apiService.createExercise(this.exerciseForm.value).subscribe({
           next: () => {
             this.loadExercises();
             this.exerciseForm.reset();
