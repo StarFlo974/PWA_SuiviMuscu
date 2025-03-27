@@ -1,0 +1,36 @@
+<div class="p-4 w-full max-w-md mx-auto">
+    <!-- Boutons centrés -->
+    <div class="flex justify-center gap-4 mb-6">
+      <a
+        routerLink="/createExercise"
+        [routerLinkActive]="['text-green-400']"
+        [ngClass]="{ 'text-white': !isActive('/createExercise'), 'bg-black px-4 py-2 rounded': true }"
+        [routerLinkActiveOptions]="{ exact: true }"
+
+      >
+        Création
+      </a>
+    
+      <a
+        routerLink="/listExercise"
+        [routerLinkActive]="['text-green-400']"
+        [ngClass]="{ 'text-white': !isActive('/listExercise'), 'bg-black px-4 py-2 rounded': true }"
+      >
+        Liste
+      </a>
+    </div>
+    
+  
+    <h2 class="text-lg font-bold mb-4">Liste des exercices</h2>
+    <ul class="space-y-4">
+      <li *ngFor="let exercise of exercises" class="border p-4 rounded shadow-sm">
+        <p class="font-medium">{{ exercise.label }}</p>
+        <p>Poids : {{ exercise.weight }} kg</p>
+        <p>Répétitions : {{ exercise.reps }}</p>
+        <button (click)="deleteExercise(exercise.id)" class="mt-2 bg-red-600 text-white px-3 py-1 rounded">
+          Supprimer
+        </button>
+      </li>
+    </ul>
+  </div>
+  
