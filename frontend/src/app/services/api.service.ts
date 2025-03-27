@@ -8,8 +8,13 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
   private apiUrl = '/api/exercises'; 
+
+  private jsonHeaders = new HttpHeaders({
+    'Accept': 'application/json'
+  });
 
   ping(): Observable<{ message: string }> {
     return of({ message: 'Pong!' });
@@ -18,28 +23,18 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   createExercise(exercise: Exercise): Observable<Exercise> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-  
-    return this.http.post<Exercise>(
-      'https://localhost:8000/api/exercises',
-      JSON.stringify(exercise), // <- important : stringify
-      { headers }
-    );
+    return this.http.post<Exercise>(this.apiUrl, exercise, { headers: this.jsonHeaders });
   }
-  
-  
 
   getExercises(): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(this.apiUrl);
+    return this.http.get<Exercise[]>(this.apiUrl, { headers: this.jsonHeaders });
   }
 
   updateExercise(exercise: Exercise): Observable<Exercise> {
-    return this.http.put<Exercise>(`${this.apiUrl}/${exercise.id}`, exercise);
+    return this.http.put<Exercise>(`${this.apiUrl}/${exercise.id}`, exercise, { headers: this.jsonHeaders });
   }
 
   deleteExercise(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.jsonHeaders });
   }
 }

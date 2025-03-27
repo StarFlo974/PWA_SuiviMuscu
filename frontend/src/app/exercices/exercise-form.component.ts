@@ -28,17 +28,6 @@ import { Exercise } from '../services/models/exercise.model';
       <button type="submit">Créer Exercice</button>
     </form>
 
-    <div>
-      <h2>Exercices existants :</h2>
-      <ul>
-        <li *ngFor="let exercise of exercises">
-          {{ exercise.label }} - 
-          Poids: {{ exercise.weight }} - 
-          Répétitions: {{ exercise.reps }}
-          <button (click)="deleteExercise(exercise.id)">Supprimer</button>
-        </li>
-      </ul>
-    </div>
   `
 })
 export class ExerciseFormComponent implements OnInit {
@@ -54,9 +43,9 @@ export class ExerciseFormComponent implements OnInit {
       weight: [null],
       reps: [null],
       sets: [null],
-      user_id: ['api/users/1'],
-      category_id: [null]
-    });
+      user_id: ['/api/users/1'],   // ✅ ce doit être une string URI
+      category_id: [null]          // ou une string de type "/api/categories/X"
+    });    
   }
 
   ngOnInit() {
@@ -78,9 +67,11 @@ export class ExerciseFormComponent implements OnInit {
   }
 
   loadExercises() {
-    this.apiService.getExercises()
-      .subscribe(exercises => this.exercises = exercises);
+    this.apiService.getExercises().subscribe(res => {
+      this.exercises = res;
+    });    
   }
+  
 
   deleteExercise(id: number) {
     this.apiService.deleteExercise(id)

@@ -9,21 +9,8 @@ use App\Repository\ExerciseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExerciseRepository::class)]
-// #[ApiResource(
-//     operations: [
-//         new Post(
-//             uriTemplate: '/exercises/create',
-//             controller: 'App\\Controller\\ExerciseController::createExercise',
-//             name: 'custom_exercise_create',
-//             read: false,
-//             deserialize: false
-//         )
-//     ]
-// )]
-#[ApiResource(
-    denormalizationContext: ['groups' => ['exercise:write']],
-)
-]
+
+#[ApiResource]
 class Exercise
 {
     #[ORM\Id]
