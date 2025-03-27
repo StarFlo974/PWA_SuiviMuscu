@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuComponent } from './components/menu/menu.component';
 import { ApiService } from './services/api.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [RouterModule],
+  imports: [RouterModule, MenuComponent],
   styleUrls: ['../styles.sass']
 })
 export class AppComponent implements OnInit {
