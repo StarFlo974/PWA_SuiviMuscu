@@ -15,7 +15,10 @@ export class AppComponent implements OnInit {
   response: string = '';
   title = 'Title';
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
     this.apiService.ping().subscribe({
@@ -26,8 +29,6 @@ export class AppComponent implements OnInit {
 
   shouldShowMenu(): boolean {
     const hiddenRoutes = ['/login', '/register'];
-    console.log(!hiddenRoutes.includes(this.router.url));
-
     return !hiddenRoutes.includes(this.router.url);
   }
 }
