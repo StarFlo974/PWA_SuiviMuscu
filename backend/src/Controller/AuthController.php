@@ -97,4 +97,22 @@ class AuthController extends AbstractController
         // Pour le logout, on peut simplement supprimer le token côté client
         return new JsonResponse(['message' => 'Déconnexion réussie']);
     }
+
+    #[Route('/api/token/refresh', name: 'api_token_refresh', methods: ['POST'])]
+    public function refreshToken(
+        Request $request,
+        JWTTokenManagerInterface $jwtManager
+    ): JsonResponse {
+        $user = $this->getUser();
+
+        if (!$user instanceof UserInterface) {
+            return new JsonResponse(['error' => 'Unauthorized'], 401);
+        }
+
+        $newToken = $jwtManager->create($user);
+
+        return new JsonResponse([
+            'token' => $newToken,
+        ]);
+    }
 }
