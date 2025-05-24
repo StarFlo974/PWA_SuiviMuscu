@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -16,7 +17,10 @@ export class AccountComponent {
   prenom = '';
   email = '';
 
-  constructor(public themeService: ThemeService) { }
+  constructor(
+    public themeService: ThemeService,
+    private authService: AuthService
+  ) { }
 
   get isDarkMode(): boolean {
     return this.themeService.getDarkMode();
@@ -34,4 +38,9 @@ export class AccountComponent {
       console.log('Fichier sélectionné :', file.name);
     }
   }
+
+  logout() {
+    this.authService.logout(); // supprime token et redirige
+  }
+
 }
