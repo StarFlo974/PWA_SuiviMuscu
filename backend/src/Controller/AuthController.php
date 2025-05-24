@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Bundle\SecurityBundle\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,9 +75,16 @@ class AuthController extends AbstractController
     }
 
     #[Route('/api/profil', name: 'api_profil', methods: ['GET'])]
-    public function profil(UserInterface $user): JsonResponse
+    public function profil(Security $security): JsonResponse
     {
+        $user = $security->getUser();
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'Utilisateur non connecté'], 401);
+        }
+
         return new JsonResponse([
+            'id' => $user->getId(),
             'email' => $user->getUserIdentifier(),
             'roles' => $user->getRoles(),
         ]);
