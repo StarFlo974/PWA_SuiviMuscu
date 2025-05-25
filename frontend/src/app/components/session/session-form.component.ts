@@ -42,8 +42,8 @@ export class SessionFormComponent implements OnInit {
     this.sessionForm = this.fb.group({
       name: ['', Validators.required],
       day: [null, Validators.required],
-      exercices: [[], Validators.required],
-      user_id: [null]
+      user_id: [null],
+      selectedExerciseIds: [[], Validators.required]
     });
   }
 
@@ -65,8 +65,19 @@ export class SessionFormComponent implements OnInit {
 
   onSubmit() {
     if (this.sessionForm.valid) {
-      const payload = this.sessionForm.value;
-      console.log('Payload à envoyer :', payload);
+      const formValue = this.sessionForm.value;
+
+      const exerciseSessions = formValue.selectedExerciseIds.map((id: number) => ({
+        exercise_id: `/api/exercises/${id}`
+      }));
+
+      const payload = {
+        name: formValue.name,
+        day: formValue.day,
+        user_id: formValue.user_id,
+        exerciseSessions
+      };
+
       this.apiService.createSession(payload).subscribe({
         next: () => {
           this.loadSessions();

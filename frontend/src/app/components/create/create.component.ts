@@ -31,6 +31,6 @@ export class CreateComponent {
   }
 
   goToCreateCategory() {
-    this.router.navigate(['/createCategorie']); // ou ton chemin réel
+    this.router.navigate(['/createCategorie']);
   }
 }
