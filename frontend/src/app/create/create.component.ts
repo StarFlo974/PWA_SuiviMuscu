@@ -25,4 +25,8 @@ export class CreateComponent {
   goToCreateExercise() {
     this.router.navigate(['/createExercise']); // ou ton chemin réel
   }
+
+  goToCreateCategory() {
+    this.router.navigate(['/createCategorie']); // ou ton chemin réel
+  }
 }

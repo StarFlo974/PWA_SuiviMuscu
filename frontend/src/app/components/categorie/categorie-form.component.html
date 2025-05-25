@@ -1,0 +1,39 @@
+<div class="p-4 w-full max-w-md mx-auto">
+    <!-- Boutons centrés -->
+    <div class="flex justify-center gap-4 mb-6">
+      <a
+        routerLink="/createCategorie"
+        [routerLinkActive]="['text-green-400']"
+        [ngClass]="{ 'text-white': !isActive('/createCategorie'), 'bg-black px-4 py-2 rounded': true }"
+      >
+        Création
+      </a>
+    
+      <a
+        routerLink="/listCategorie"
+        [routerLinkActive]="['text-green-400']"
+        [ngClass]="{ 'text-white': !isActive('/listCategorie'), 'bg-black px-4 py-2 rounded': true }"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Liste
+      </a>
+    </div>
+    
+  
+    <!-- Formulaire -->
+    <form [formGroup]="categorieForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Nom</label>
+        <input type="text" formControlName="name" class="w-full border rounded px-3 py-2" />
+      </div>
+
+      <button
+        type="submit"
+        class="flex items-center gap-2 bg-black text-white px-4 py-2 rounded mx-auto"
+      >
+        <span class="material-icons">folder</span>
+        + Créer une catégorie
+      </button>
+    </form>
+  </div>
+  

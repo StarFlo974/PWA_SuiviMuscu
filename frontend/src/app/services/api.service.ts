@@ -10,7 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 
 export class ApiService {
-  private apiUrl = '/api/exercises';
+  private apiUrl = 'http://localhost:8000/api/exercises';
 
   private jsonHeaders = new HttpHeaders({
     'Accept': 'application/json'
@@ -37,4 +37,23 @@ export class ApiService {
   deleteExercise(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.jsonHeaders });
   }
+
+
+
+  getCategorie(): Observable<any> {
+    return this.http.get('http://localhost:8000/api/categories', { headers: this.jsonHeaders });
+  }
+
+  createCategorie(categorie: any): Observable<any> {
+    return this.http.post('http://localhost:8000/api/categories', categorie, { headers: this.jsonHeaders });
+  }
+
+  updateCategorie(categorie: any): Observable<any> {
+    return this.http.put(`http://localhost:8000/api/categories/${categorie.id}`, categorie, { headers: this.jsonHeaders });
+  }
+
+  deleteCategorie(id: number): Observable<any> {
+    return this.http.delete(`http://localhost:8000/api/categories/${id}`, { headers: this.jsonHeaders });
+  }
+
 }
