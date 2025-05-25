@@ -11,6 +11,8 @@ import { AccountComponent } from './components/account/account.component';
 import { CreateComponent } from './components/create/create.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CategorieFormComponent } from './components/categorie/categorie-form.component';
+import { CategorieListComponent } from './components/categorie/categorie-list.component';
 
 
 export const routes: Routes = [
@@ -26,6 +28,8 @@ export const routes: Routes = [
     path: '',
     canActivate: [AuthGuard],
     children: [
+      { path: 'createCategorie', component: CategorieFormComponent },
+      { path: 'listCategorie', component: CategorieListComponent },
       { path: 'listExercise', component: ExerciseListComponent },
       { path: 'createExercise', component: ExerciseFormComponent },
       { path: 'listSession', component: SessionListComponent },

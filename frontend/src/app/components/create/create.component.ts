@@ -29,4 +29,8 @@ export class CreateComponent {
   goToCreateSession() {
     this.router.navigate(['/createSession']);
   }
+
+  goToCreateCategory() {
+    this.router.navigate(['/createCategorie']); // ou ton chemin réel
+  }
 }
