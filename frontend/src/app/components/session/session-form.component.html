@@ -32,8 +32,9 @@
     <!-- Exercices (multi-select) -->
     <div>
       <label class="block text-sm font-medium">Exercices</label>
-      <ng-select [items]="exercices" bindLabel="label" bindValue="id" [multiple]="true" formControlName="exercices"
-        placeholder="Exercices..." class="w-full border border-black rounded text-[16px]">
+      <ng-select [items]="exercices" bindLabel="label" bindValue="id" [multiple]="true"
+        formControlName="selectedExerciseIds" placeholder="Exercices..."
+        class="w-full border border-black rounded text-[16px]">
       </ng-select>
     </div>
 
