@@ -1,28 +1,29 @@
-<div class="flex flex-col gap-6 w-full max-w-[420px] mx-auto mt-12 text-[20px] font-medium">
+<div class="flex flex-col gap-6 w-full max-w-[420px] mx-auto mt-12 text-[20px] font-medium dark:text-white">
 
     <!-- Créer une séance -->
     <button type="button"
-        class="flex items-center gap-2 border border-2 border-black text-black text-[24px] font-semibold bg-white px-3 py-2 h-18 rounded-xl w-full">
+        class="flex items-center gap-2 border border-2 border-black dark:border-white text-black dark:text-white text-[24px] font-semibold bg-transparent px-3 py-2 h-18 rounded-xl w-full">
         <span class="material-icons text-[30px]">event_note</span>
         + Créer une séance
     </button>
 
     <!-- Créer une catégorie -->
     <button type="button"
-        class="flex items-center gap-2 border border-2 border-black text-black text-[24px] font-semibold bg-white px-3 py-2 h-18 rounded-xl w-full">
+        class="flex items-center gap-2 border border-2 border-black dark:border-white text-black dark:text-white text-[24px] font-semibold bg-transparent px-3 py-2 h-18 rounded-xl w-full">
         <span class="material-icons text-[30px]">create_new_folder</span>
         + Créer une categorie
     </button>
 
     <!-- Créer un exercice -->
     <button type="button" (click)="goToCreateExercise()"
-        class="flex items-center gap-2 border border-2 border-black text-black text-[24px] font-semibold bg-white px-3 py-2 h-18 rounded-xl w-full">
+        class="flex items-center gap-2 border border-2 border-black dark:border-white text-black dark:text-white text-[24px] font-semibold bg-transparent px-3 py-2 h-18 rounded-xl w-full">
         <span class="material-icons text-[30px]">note_add</span>
         + Créer un exercice
     </button>
 
     <!-- Dernière séance -->
-    <div class="border border-2 border-black rounded-xl px-3 py-2 mt-2 bg-white">
+    <div
+        class="border border-2 border-black dark:border-white rounded-xl px-3 py-2 mt-2 bg-transparent dark:text-white">
         <p class="font-semibold">Dernière séance créée</p>
         <p class="text-[14px] font-normal">24 mars 2025</p>
         <ul class="list-disc pl-5 text-[14px]">
@@ -32,7 +33,7 @@
     </div>
 
     <!-- Dernière catégorie -->
-    <div class="border border-2 border-black rounded-xl px-3 py-2 bg-white">
+    <div class="border border-2 border-black dark:border-white rounded-xl px-3 py-2 bg-transparent dark:text-white">
         <p class="font-semibold">Dernière categorie créée</p>
         <ul class="list-disc pl-5 text-[14px]">
             <li>Poids du corps</li>
@@ -40,7 +41,7 @@
     </div>
 
     <!-- Dernier exercice -->
-    <div class="border border-2 border-black rounded-xl px-3 py-2 bg-white">
+    <div class="border border-2 border-black dark:border-white rounded-xl px-3 py-2 bg-transparent dark:text-white">
         <p class="font-semibold">Dernier exercice créé</p>
         <ul class="list-disc pl-5 text-[14px]">
             <li>pompes diamant</li>
