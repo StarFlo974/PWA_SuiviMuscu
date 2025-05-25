@@ -13,6 +13,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class ApiService {
   private apiExerciseUrl = '/api/exercises';
   private apiSessionUrl = '/api/sessions';
+  private apiCategorieUrl = '/api/categories';
 
   private jsonHeaders = new HttpHeaders({
     'Accept': 'application/json'
@@ -59,4 +60,23 @@ export class ApiService {
   deleteSession(id: number): Observable<any> {
     return this.http.delete(`${this.apiSessionUrl}/${id}`, { headers: this.jsonHeaders });
   }
+
+
+
+  getCategorie(): Observable<any> {
+    return this.http.get(`${this.apiCategorieUrl}`, { headers: this.jsonHeaders });
+  }
+
+  createCategorie(categorie: any): Observable<any> {
+    return this.http.post(`${this.apiCategorieUrl}`, categorie, { headers: this.jsonHeaders });
+  }
+
+  updateCategorie(categorie: any): Observable<any> {
+    return this.http.put(`${this.apiCategorieUrl}/${categorie.id}`, categorie, { headers: this.jsonHeaders });
+  }
+
+  deleteCategorie(id: number): Observable<any> {
+    return this.http.delete(`${this.apiCategorieUrl}/${id}`, { headers: this.jsonHeaders });
+  }
+
 }
