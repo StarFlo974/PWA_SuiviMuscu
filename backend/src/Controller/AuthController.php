@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Bundle\SecurityBundle\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,9 +75,16 @@ class AuthController extends AbstractController
     }
 
     #[Route('/api/profil', name: 'api_profil', methods: ['GET'])]
-    public function profil(UserInterface $user): JsonResponse
+    public function profil(Security $security): JsonResponse
     {
+        $user = $security->getUser();
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'Utilisateur non connecté'], 401);
+        }
+
         return new JsonResponse([
+            'id' => $user->getId(),
             'email' => $user->getUserIdentifier(),
             'roles' => $user->getRoles(),
         ]);
@@ -88,5 +96,23 @@ class AuthController extends AbstractController
     {
         // Pour le logout, on peut simplement supprimer le token côté client
         return new JsonResponse(['message' => 'Déconnexion réussie']);
+    }
+
+    #[Route('/api/token/refresh', name: 'api_token_refresh', methods: ['POST'])]
+    public function refreshToken(
+        Request $request,
+        JWTTokenManagerInterface $jwtManager
+    ): JsonResponse {
+        $user = $this->getUser();
+
+        if (!$user instanceof UserInterface) {
+            return new JsonResponse(['error' => 'Unauthorized'], 401);
+        }
+
+        $newToken = $jwtManager->create($user);
+
+        return new JsonResponse([
+            'token' => $newToken,
+        ]);
     }
 }
