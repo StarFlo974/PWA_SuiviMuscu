@@ -1,0 +1,27 @@
+<div class="p-4 w-full max-w-md mx-auto">
+  <!-- Boutons centrés -->
+  <div class="flex justify-center gap-4 mb-6">
+    <a routerLink="/createSession" [routerLinkActive]="['text-green-400']"
+      [ngClass]="{ 'text-white': !isActive('/createSession'), 'bg-black px-4 py-2 rounded': true }"
+      [routerLinkActiveOptions]="{ exact: true }">
+      Création
+    </a>
+
+    <a routerLink="/listSession" [routerLinkActive]="['text-green-400']"
+      [ngClass]="{ 'text-white': !isActive('/listSession'), 'bg-black px-4 py-2 rounded': true }">
+      Liste
+    </a>
+  </div>
+
+
+  <h2 class="text-lg font-bold mb-4">Liste des séances</h2>
+  <ul class="space-y-4">
+    <li *ngFor="let session of sessions" class="border p-4 rounded shadow-sm">
+      <p class="font-medium">{{ session.name }}</p>
+      <p>Poids : {{ session.day }} kg</p>
+      <button (click)="deleteSession(session.id)" class="mt-2 bg-red-600 text-white px-3 py-1 rounded">
+        Supprimer
+      </button>
+    </li>
+  </ul>
+</div>

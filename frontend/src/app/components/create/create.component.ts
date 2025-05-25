@@ -23,6 +23,10 @@ export class CreateComponent {
   lastExercise = 'pompes diamant';
 
   goToCreateExercise() {
-    this.router.navigate(['/createExercise']); // ou ton chemin réel
+    this.router.navigate(['/createExercise']);
+  }
+
+  goToCreateSession() {
+    this.router.navigate(['/createSession']);
   }
 }

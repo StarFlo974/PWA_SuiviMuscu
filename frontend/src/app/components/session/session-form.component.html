@@ -1,0 +1,47 @@
+<div class="p-4 w-full max-w-md mx-auto">
+  <!-- Boutons centrés -->
+  <div class="flex justify-center gap-4 mb-6">
+    <a routerLink="/createSession" [routerLinkActive]="['text-green-400']"
+      [ngClass]="{ 'text-white': !isActive('/createSession'), 'bg-black px-4 py-2 rounded': true }">
+      Création
+    </a>
+
+    <a routerLink="/listSession" [routerLinkActive]="['text-green-400']"
+      [ngClass]="{ 'text-white': !isActive('/listSession'), 'bg-black px-4 py-2 rounded': true }"
+      [routerLinkActiveOptions]="{ exact: true }">
+      Liste
+    </a>
+  </div>
+
+
+  <!-- Formulaire -->
+  <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+    <!-- Nom -->
+    <div>
+      <label class="block text-sm font-medium">Nom</label>
+      <input type="text" formControlName="name" class="w-full border border-black rounded px-3 py-2 text-[16px]" />
+    </div>
+
+    <!-- Date -->
+    <div>
+      <label class="block text-sm font-medium">Date</label>
+      <input type="date" formControlName="day" class="w-full border border-black rounded px-3 py-2 text-[16px]" />
+    </div>
+
+    <!-- Exercices (multi-select) -->
+    <div>
+      <label class="block text-sm font-medium">Exercices</label>
+      <ng-select [items]="exercices" bindLabel="label" bindValue="id" [multiple]="true" formControlName="exercices"
+        placeholder="Exercices..." class="w-full border border-black rounded text-[16px]">
+      </ng-select>
+    </div>
+
+    <!-- Bouton -->
+    <button type="submit" class="flex items-center gap-2 bg-black text-white px-4 py-2 rounded mx-auto">
+      <span class="material-icons">event_note</span>
+      + Créer une séance
+    </button>
+
+  </form>
+</div>

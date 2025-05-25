@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Exercise } from './models/exercise.model';
+import { Session } from './models/session.model';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -10,7 +11,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 
 export class ApiService {
-  private apiUrl = '/api/exercises';
+  private apiExerciseUrl = '/api/exercises';
+  private apiSessionUrl = '/api/sessions';
 
   private jsonHeaders = new HttpHeaders({
     'Accept': 'application/json'
@@ -22,19 +24,39 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  //Exercice
+
   createExercise(exercise: Exercise): Observable<Exercise> {
-    return this.http.post<Exercise>(this.apiUrl, exercise, { headers: this.jsonHeaders });
+    return this.http.post<Exercise>(this.apiExerciseUrl, exercise, { headers: this.jsonHeaders });
   }
 
   getExercises(): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(this.apiUrl, { headers: this.jsonHeaders });
+    return this.http.get<Exercise[]>(this.apiExerciseUrl, { headers: this.jsonHeaders });
   }
 
   updateExercise(exercise: Exercise): Observable<Exercise> {
-    return this.http.put<Exercise>(`${this.apiUrl}/${exercise.id}`, exercise, { headers: this.jsonHeaders });
+    return this.http.put<Exercise>(`${this.apiExerciseUrl}/${exercise.id}`, exercise, { headers: this.jsonHeaders });
   }
 
   deleteExercise(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.jsonHeaders });
+    return this.http.delete(`${this.apiExerciseUrl}/${id}`, { headers: this.jsonHeaders });
+  }
+
+  //Session
+
+  createSession(session: Session): Observable<Session> {
+    return this.http.post<Session>(this.apiSessionUrl, session, { headers: this.jsonHeaders });
+  }
+
+  getSessions(): Observable<Session[]> {
+    return this.http.get<Session[]>(this.apiSessionUrl, { headers: this.jsonHeaders });
+  }
+
+  updateSession(session: Session): Observable<Session> {
+    return this.http.put<Session>(`${this.apiSessionUrl}/${session.id}`, session, { headers: this.jsonHeaders });
+  }
+
+  deleteSession(id: number): Observable<any> {
+    return this.http.delete(`${this.apiSessionUrl}/${id}`, { headers: this.jsonHeaders });
   }
 }
