@@ -29,7 +29,7 @@ class ExerciseSession
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['exercise_session:read', 'exercise_session:write', 'session:write'])]
+    #[Groups(['exercise_session:read', 'exercise_session:write', 'session:write', 'session:read'])]
     private ?Exercise $exercise_id = null;
 
     public function getId(): ?int
