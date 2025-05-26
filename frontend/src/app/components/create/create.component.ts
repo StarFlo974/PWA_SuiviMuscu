@@ -25,7 +25,7 @@ export class CreateComponent {
   goToCreateExercise() {
     this.router.navigate(['/createExercise']);
   }
-
+  
   goToCreateSession() {
     this.router.navigate(['/createSession']);
   }
