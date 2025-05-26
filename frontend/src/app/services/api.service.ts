@@ -63,6 +63,7 @@ export class ApiService {
 
 
 
+  // Categorie
   getCategorie(): Observable<any> {
     return this.http.get(`${this.apiCategorieUrl}`, { headers: this.jsonHeaders });
   }
@@ -73,6 +74,10 @@ export class ApiService {
 
   updateCategorie(categorie: any): Observable<any> {
     return this.http.put(`${this.apiCategorieUrl}/${categorie.id}`, categorie, { headers: this.jsonHeaders });
+  }
+
+  updateExerciseCategory(exerciseId: number, categorieIri: string): Observable<any> {
+    return this.http.patch(`${this.apiExerciseUrl}/${exerciseId}`, { category_id: categorieIri }, { headers: this.jsonHeaders });
   }
 
   deleteCategorie(id: number): Observable<any> {
