@@ -28,7 +28,7 @@ class ExerciseSession
     private ?Session $session_id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: "exercise_id_id", referencedColumnName: "id", onDelete: "CASCADE")]
     #[Groups(['exercise_session:read', 'exercise_session:write', 'session:write', 'session:read'])]
     private ?Exercise $exercise_id = null;
 

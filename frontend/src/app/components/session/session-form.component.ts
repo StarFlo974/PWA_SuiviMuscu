@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../auth/auth.service';
@@ -37,7 +38,8 @@ export class SessionFormComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.sessionForm = this.fb.group({
       name: ['', Validators.required],
@@ -82,8 +84,12 @@ export class SessionFormComponent implements OnInit {
         next: () => {
           this.loadSessions();
           this.sessionForm.reset();
+          this.toastr.success('Séance créé avec succès !');
         },
-        error: (err) => console.error('Erreur', err)
+        error: (err) => {
+          console.error('Erreur', err);
+          this.toastr.error('Échec de la création de la séance.');
+        }
       });
     }
   }

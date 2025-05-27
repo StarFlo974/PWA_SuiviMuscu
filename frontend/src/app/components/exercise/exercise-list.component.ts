@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Ajouté ici
 import { ApiService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 import { Exercise } from '../../services/models/exercise.model';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 export class ExerciseListComponent implements OnInit {
   exercises: Exercise[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private toastr: ToastrService) { }
 
   isActive(path: string): boolean {
     return this.router.url === path;
@@ -33,8 +34,14 @@ export class ExerciseListComponent implements OnInit {
 
   deleteExercise(id: number) {
     this.apiService.deleteExercise(id).subscribe({
-      next: () => this.loadExercises(),
-      error: (err) => console.error('Erreur', err)
+      next: () => {
+        this.loadExercises(),
+          this.toastr.success('Exercice supprimer avec succès !');
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastr.error('Échec de la suppression de l\'exercice.');
+      }
     });
   }
 }
