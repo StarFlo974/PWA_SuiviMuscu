@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 interface UserProfile {
   id: number;
@@ -48,7 +49,8 @@ export class CategorieFormComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.categorieForm = this.fb.group({
       name: ['', Validators.required],
@@ -95,13 +97,17 @@ export class CategorieFormComponent implements OnInit {
             next: () => {
               this.loadCategorie();
               this.categorieForm.reset();
+              this.toastr.success('Catégorie créée avec succès !');
             },
             error: (err) => {
               console.error('Erreur de mise à jour des exercices', err);
+              this.toastr.error(
+                'Échec de la mise à jour des exercices dans la catégorie.'
+              );
             },
           });
         },
-        error: (err) => console.error('Erreur création catégorie', err),
+        error: (err) => console.error('Erreur création catégorie', err),    
       });
     }
   }
@@ -117,6 +123,7 @@ export class CategorieFormComponent implements OnInit {
       next: (res) => {
         this.exercices = res;
         console.log(res);
+        this.toastr.success('Exercices chargés avec succès !');
       },
       error: (err) =>
         console.error('Erreur de récupération des exercices', err),
