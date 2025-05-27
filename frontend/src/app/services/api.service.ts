@@ -11,9 +11,10 @@ import { HttpHeaders } from '@angular/common/http';
 })
 
 export class ApiService {
-  private apiExerciseUrl = '/api/exercises';
-  private apiSessionUrl = '/api/sessions';
-  private apiCategorieUrl = '/api/categories';
+  private baseUrl = 'http://localhost:8000';
+  private apiExerciseUrl = `${this.baseUrl}/api/exercises`;
+  private apiSessionUrl = `${this.baseUrl}/api/sessions`;
+  private apiCategorieUrl = `${this.baseUrl}/api/categories`;
 
   private jsonHeaders = new HttpHeaders({
     'Accept': 'application/json'
