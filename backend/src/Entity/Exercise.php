@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Metadata\Post;
 use App\Controller\ExerciseController;
 use App\Repository\ExerciseRepository;
@@ -23,6 +24,7 @@ class Exercise
     private ?User $user_id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['exercise_session:read', 'session:read'])]
     private ?string $label = null;
 
     #[ORM\Column(nullable: true)]

@@ -18,8 +18,18 @@
   <ul class="space-y-4">
     <li *ngFor="let session of sessions" class="border p-4 rounded shadow-sm">
       <p class="font-medium">{{ session.name }}</p>
-      <p>Poids : {{ session.day }} kg</p>
-      <button (click)="deleteSession(session.id)" class="mt-2 bg-red-600 text-white px-3 py-1 rounded">
+      <p class="mt-2">Date : {{ session.day | date:'EEEE d MMMM y' }}</p>
+      <div class="mt-2">
+        <span class="font-semibold text-lg mb-2">Exercices :</span>
+        <span>
+          <ul class="list-disc list-inside space-y-1 text-base">
+            <li *ngFor="let exercice of session.exerciseSessions">
+              {{ exercice.exercise_id.label }}
+            </li>
+          </ul>
+        </span>
+      </div>
+      <button (click)="deleteSession(session.id)" class="mt-2 bg-red-600 text-white px-3 py-1 mt-4 rounded">
         Supprimer
       </button>
     </li>
