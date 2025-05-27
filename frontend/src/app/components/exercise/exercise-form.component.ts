@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../auth/auth.service';
 import { Exercise } from '../../services/models/exercise.model';
@@ -28,7 +29,8 @@ export class ExerciseFormComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.exerciseForm = this.fb.group({
       label: ['', Validators.required],
@@ -57,14 +59,18 @@ export class ExerciseFormComponent implements OnInit {
     this.loadExercises();
   }
 
+
   onSubmit() {
     if (this.exerciseForm.valid) {
       this.apiService.createExercise(this.exerciseForm.value).subscribe({
         next: () => {
-          this.loadExercises();
           this.exerciseForm.reset();
+          this.toastr.success('Exercice créé avec succès !');
         },
-        error: (err) => console.error('Erreur', err)
+        error: (err) => {
+          console.error(err);
+          this.toastr.error('Échec de la création de l\'exercice.');
+        }
       });
     }
   }
