@@ -4,7 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { Categorie } from '../../services/models/categorie.model';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categorie-list', // Correction du selector
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CategorieListComponent implements OnInit {
   categories: Categorie[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private toastr: ToastrService) { }
 
   isActive(path: string): boolean {
     return this.router.url === path;
@@ -33,8 +33,14 @@ export class CategorieListComponent implements OnInit {
 
   deleteCategorie(id: number) {
     this.apiService.deleteCategorie(id).subscribe({
-      next: () => this.loadCategorie(),
-      error: (err) => console.error('Erreur', err)
+      next: () => {
+        this.loadCategorie();
+        this.toastr.success('Catégorie supprimée avec succès !');
+      },
+       error: (err) => {
+        console.error('Erreur', err);
+        this.toastr.error('Échec de la suppression de la catégorie.');
+      }
     });
   }
 }

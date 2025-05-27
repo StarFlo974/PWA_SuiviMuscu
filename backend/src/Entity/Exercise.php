@@ -43,6 +43,7 @@ class Exercise
     private ?float $distance = null;
 
     #[ORM\ManyToOne]
+    #[ORM\JoinColumn(onDelete: "SET NULL")]
     private ?Category $category_id = null;
 
     public function getId(): ?int
